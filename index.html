@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВінУкрБуд - Внутрішній ремонт приміщень під ключ у Вінниці</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#f97316',
+                            hover: '#ea580c',
+                            dark: '#0f172a',
+                            slate: '#1e293b',
+                            light: '#f8fafc',
+                            accent: '#fbbf24'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(249, 115, 22, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 antialiased selection:bg-brand-orange selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-brand-dark/90 backdrop-blur-md border-b border-slate-800" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-brand-orange text-white flex items-center justify-center rounded-xl shadow-lg shadow-brand-orange/30 group-hover:scale-105 transition-transform duration-300">
+                        <i class="fa-solid fa-helmet-safety text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-tight text-white uppercase font-heading">
+                            Він<span class="text-brand-orange">Укр</span>Буд
+                        </span>
+                        <span class="block text-[10px] text-slate-400 font-medium tracking-widest uppercase">Будівельна компанія</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-300">
+                    <a href="#services" class="hover:text-brand-orange transition-colors">Послуги</a>
+                    <a href="#calculator" class="hover:text-brand-orange transition-colors">Калькулятор</a>
+                    <a href="#advantages" class="hover:text-brand-orange transition-colors">Переваги</a>
+                    <a href="#workflow" class="hover:text-brand-orange transition-colors">Етапи</a>
+                    <a href="#contacts" class="hover:text-brand-orange transition-colors">Контакти</a>
+                </nav>
+
+                <!-- Action Button & Mobile Menu Toggle -->
+                <div class="flex items-center space-x-4">
+                    <button onclick="openModal('Замовити дзвінок')" class="hidden sm:inline-flex items-center space-x-2 bg-brand-orange hover:bg-brand-hover text-white px-5 py-2.5 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 shadow-lg shadow-brand-orange/20 text-sm">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>Замовити дзвінок</span>
+                    </button>
+                    
+                    <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white text-2xl focus:outline-none p-2" aria-label="Відкрити меню">
+                        <i class="fa-solid fa-bars" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-slate border-b border-slate-700 px-4 pt-3 pb-6 space-y-3">
+            <a href="#services" class="mobile-nav-link block py-2 text-slate-200 hover:text-brand-orange font-medium">Послуги</a>
+            <a href="#calculator" class="mobile-nav-link block py-2 text-slate-200 hover:text-brand-orange font-medium">Калькулятор</a>
+            <a href="#advantages" class="mobile-nav-link block py-2 text-slate-200 hover:text-brand-orange font-medium">Переваги</a>
+            <a href="#workflow" class="mobile-nav-link block py-2 text-slate-200 hover:text-brand-orange font-medium">Етапи</a>
+            <a href="#contacts" class="mobile-nav-link block py-2 text-slate-200 hover:text-brand-orange font-medium">Контакти</a>
+            <button onclick="openModal('Замовити консультацію')" class="w-full mt-2 bg-brand-orange hover:bg-brand-hover text-white py-3 rounded-xl font-bold transition-colors text-center">
+                Замовити консультацію
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-brand-dark overflow-hidden bg-grid-pattern">
+        <!-- Background Accent Blurs -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-10 -right-10 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-xs sm:text-sm font-semibold tracking-wide">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Вінниця та Вінницька область</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight font-heading">
+                        Ремонт приміщень <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-brand-accent">під ключ</span> від компанії ВінУкрБуд
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Професійний внутрішній ремонт квартир, приватних будинків та офісних приміщень. Гарантуємо найвищу якість, суворе дотримання кошторису та термінів сдачі.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#calculator" class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-brand-orange hover:bg-brand-hover text-white px-8 py-4 rounded-xl font-bold transition-all shadow-xl shadow-brand-orange/25 transform hover:-translate-y-0.5 text-base">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Розрахувати вартість</span>
+                        </a>
+
+                        <a href="https://www.olx.ua" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 px-7 py-4 rounded-xl font-semibold transition-all hover:border-slate-500 text-base">
+                            <span class="inline-block w-5 h-5 rounded-full bg-[#002f34] text-cyan-400 font-black text-xs text-center leading-5">O</span>
+                            <span>Профіль на OLX</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400"></i>
+                        </a>
+                    </div>
+
+                    <!-- Hero Features Badges -->
+                    <div class="pt-8 border-t border-slate-800 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <div class="text-brand-orange font-bold text-xl sm:text-2xl mb-0.5"><i class="fa-solid fa-shield-halved mr-1"></i> 100%</div>
+                            <div class="text-xs text-slate-400 font-medium">Гарантія якості</div>
+                        </div>
+                        <div>
+                            <div class="text-brand-orange font-bold text-xl sm:text-2xl mb-0.5"><i class="fa-solid fa-file-signature mr-1"></i> Фіксовано</div>
+                            <div class="text-xs text-slate-400 font-medium">Чіткий кошторис</div>
+                        </div>
+                        <div>
+                            <div class="text-brand-orange font-bold text-xl sm:text-2xl mb-0.5"><i class="fa-solid fa-user-gear mr-1"></i> 8+ років</div>
+                            <div class="text-xs text-slate-400 font-medium">Досвід майстрів</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Showcase Card -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-orange to-amber-500 rounded-3xl blur opacity-30"></div>
+                        <div class="relative bg-brand-slate rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt="Сучасний ремонт від ВінУкрБуд" class="w-full h-80 sm:h-96 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x600/1e293b/f97316?text=ВінУкрБуд+Ремонт';">
+                            <div class="p-6 bg-gradient-to-t from-brand-slate via-brand-slate/90 to-transparent">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Приймаємо нові замовлення</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-white">Вінниця та область</h3>
+                                <p class="text-xs text-slate-400 mt-1">Виїзд замірника та складання кошторису — безкоштовно!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange mb-3">Наші Послуги</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white font-heading">
+                    Повний спектр внутрішніх ремонтних робіт
+                </p>
+                <p class="text-slate-400 mt-4 text-base">
+                    Виконуємо комплексні та локальні види робіт під ключ будь-якої складності.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-brand-slate rounded-2xl p-8 border border-slate-800 hover:border-brand-orange/50 transition-all duration-300 hover:-translate-y-1.5 shadow-xl group">
+                    <div class="w-14 h-14 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-house-chimney-crack"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Комплексний ремонт під ключ</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Повний цикл ремонту квартир, котеджів та офісів. Від демонтажу та чорнових робіт до чистового оздоблення та здачі об'єкта.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Квартири у новобудовах та вторинному житлі</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Приватні будинки та таунхауси</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Компеційні та офісні приміщення</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-brand-slate rounded-2xl p-8 border border-slate-800 hover:border-brand-orange/50 transition-all duration-300 hover:-translate-y-1.5 shadow-xl group">
+                    <div class="w-14 h-14 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-paint-roller"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Оздоблювальні та малярні роботи</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Ідеально рівні стіни та стелі. Професійна шпаклівка під покраску чи шпалери, нанесення декоративної штукатурки.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Штукатурка та машинка шпаклівка</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Безповітряне фарбування стін</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Поклейка всіх типів шпалер</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-brand-slate rounded-2xl p-8 border border-slate-800 hover:border-brand-orange/50 transition-all duration-300 hover:-translate-y-1.5 shadow-xl group">
+                    <div class="w-14 h-14 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-border-all"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Укладання підлогових покриттів</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Підготовка основи, влаштування стяжки та професійне монтаж будь-яких матеріалів підлоги.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Плитка та керамограніт будь-яких форматів</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Ламінат, паркетна дошка, вініл (SPC)</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Самовирівнювальні підлоги та плінтус</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-brand-slate rounded-2xl p-8 border border-slate-800 hover:border-brand-orange/50 transition-all duration-300 hover:-translate-y-1.5 shadow-xl group">
+                    <div class="w-14 h-14 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-plug-circle-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Сантехніка та Електромонтаж</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Безпека та надійність інженерних мереж. Розводка електрики та сантехніки з нуля за сучасними стандартами.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Заміна проводки, монтаж щитків</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Водопостачання, каналізація, санфаянс</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Тепла підлога (водяна та електрична)</li>
+                    </ul>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-brand-slate rounded-2xl p-8 border border-slate-800 hover:border-brand-orange/50 transition-all duration-300 hover:-translate-y-1.5 shadow-xl group">
+                    <div class="w-14 h-14 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Гіпсокартонні системи</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Зонування приміщень, монтаж перегородок, багатоуровневих стель, фальшстiн та ніш.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Міжкімнатні перегородки</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Шумоізоляція стін та стель</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Декоративні короби та арки</li>
+                    </ul>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-brand-slate rounded-2xl p-8 border border-slate-800 hover:border-brand-orange/50 transition-all duration-300 hover:-translate-y-1.5 shadow-xl group">
+                    <div class="w-14 h-14 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Натяжні стелі та Освітлення</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Монтаж натяжних стель будь-яких конфігурацій (матові, сатинові, глянцеві) та світлових рішень.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Тіньовий профіль та шинопроводи</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Врізні споти та LED-підсвічування</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-brand-orange mr-2"></i> Екологічно безпечні полотна</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost Calculator Section -->
+    <section id="calculator" class="py-20 bg-brand-dark relative bg-grid-pattern">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange mb-3">Онлайн Розрахунок</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white font-heading">Калькулятор вартості ремонту</h3>
+                <p class="text-slate-400 mt-3 text-sm sm:text-base">Дізнайтесь орієнтовну вартість вашого ремонту за 1 хвилину</p>
+            </div>
+
+            <div class="bg-brand-slate border border-slate-700 rounded-3xl p-6 sm:p-10 shadow-2xl relative">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    
+                    <div class="space-y-6">
+                        <!-- Step 1: Object Type -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 tracking-wider mb-2">1. Тип приміщення</label>
+                            <div class="grid grid-cols-3 gap-2" id="property-type">
+                                <button type="button" data-value="1" class="calc-btn active border border-brand-orange bg-brand-orange/20 text-white p-3 rounded-xl text-center text-xs sm:text-sm font-semibold transition-all">
+                                    <i class="fa-solid fa-building block text-lg mb-1"></i> Квартира
+                                </button>
+                                <button type="button" data-value="1.15" class="calc-btn border border-slate-700 bg-slate-800 text-slate-300 p-3 rounded-xl text-center text-xs sm:text-sm font-semibold hover:border-slate-500 transition-all">
+                                    <i class="fa-solid fa-house block text-lg mb-1"></i> Будинок
+                                </button>
+                                <button type="button" data-value="1.1" class="calc-btn border border-slate-700 bg-slate-800 text-slate-300 p-3 rounded-xl text-center text-xs sm:text-sm font-semibold hover:border-slate-500 transition-all">
+                                    <i class="fa-solid fa-briefcase block text-lg mb-1"></i> Офіс
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Repair Type -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 tracking-wider mb-2">2. Вид ремонту</label>
+                            <div class="grid grid-cols-3 gap-2" id="repair-type">
+                                <button type="button" data-rate="2500" class="repair-btn border border-slate-700 bg-slate-800 text-slate-300 p-3 rounded-xl text-center text-xs sm:text-sm font-semibold hover:border-slate-500 transition-all">
+                                    Косметичний
+                                </button>
+                                <button type="button" data-rate="4500" class="repair-btn active border border-brand-orange bg-brand-orange/20 text-white p-3 rounded-xl text-center text-xs sm:text-sm font-semibold transition-all">
+                                    Капітальний
+                                </button>
+                                <button type="button" data-rate="7000" class="repair-btn border border-slate-700 bg-slate-800 text-slate-300 p-3 rounded-xl text-center text-xs sm:text-sm font-semibold hover:border-slate-500 transition-all">
+                                    Преміум
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Area Slider -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-xs font-bold uppercase text-slate-400 tracking-wider">3. Площа приміщення</label>
+                                <span class="text-brand-orange font-extrabold text-lg" id="area-val">50 м²</span>
+                            </div>
+                            <input type="range" id="area-range" min="15" max="250" value="50" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-orange">
+                            <div class="flex justify-between text-[11px] text-slate-500 mt-1">
+                                <span>15 м²</span>
+                                <span>250 м²</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calculator Output Card -->
+                    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 text-center space-y-6 flex flex-col justify-between h-full">
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">Орієнтовна вартість робіт</span>
+                            <div class="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-orange font-heading my-2">
+                                <span id="total-price">225 000</span> <span class="text-2xl font-bold text-white">грн</span>
+                            </div>
+                            <p class="text-xs text-slate-400">Точна вартість визначається після безкоштовного виміру об'єкта</p>
+                        </div>
+
+                        <div class="space-y-3 pt-4 border-t border-slate-800">
+                            <button onclick="submitCalcEstimate()" class="w-full bg-brand-orange hover:bg-brand-hover text-white py-4 rounded-xl font-bold text-base transition-all shadow-lg shadow-brand-orange/20">
+                                Зафіксувати ціну та викликати замірника
+                            </button>
+                            <p class="text-[11px] text-slate-500"><i class="fa-solid fa-lock mr-1"></i> Ваші дані захищені та не передаються третім особам</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us (Advantages) -->
+    <section id="advantages" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange mb-3">Чому обирають нас</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white font-heading">
+                    Переваги співпраці з "ВінУкрБуд"
+                </h3>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="bg-brand-slate p-6 rounded-2xl border border-slate-800">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-file-contract"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Офіційний договір</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Працюємо за чітким договором. Фіксуємо вартість робіт та терміни їх виконання — жодних прихованих доплат!
+                    </p>
+                </div>
+
+                <div class="bg-brand-slate p-6 rounded-2xl border border-slate-800">
+                    <div class="w-12 h-12 bg-emerald-500/10 text-emerald-500 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Дотримання термінів</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Ценуємо ваш час. Складаємо графік виконання робіт і строго слідуємо йому на кожному етапі.
+                    </p>
+                </div>
+
+                <div class="bg-brand-slate p-6 rounded-2xl border border-slate-800">
+                    <div class="w-12 h-12 bg-blue-500/10 text-blue-500 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Знижки на матеріали</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Допомагаємо з вибором та закупівлею якісних будівельних матеріалів за партнерськими цінами зі знижками до 20%.
+                    </p>
+                </div>
+
+                <div class="bg-brand-slate p-6 rounded-2xl border border-slate-800">
+                    <div class="w-12 h-12 bg-purple-500/10 text-purple-500 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-broom"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Чистота та порядок</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Після завершення робіт організовуємо прибирання та вивіз всього будівельного сміття. Об'єкт здається повністю чистим.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section id="workflow" class="py-20 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange mb-3">Як ми працюємо</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white font-heading">
+                    5 простих кроків до вашого ідеального ремонту
+                </h3>
+            </div>
+
+            <div class="grid md:grid-cols-5 gap-4 relative">
+                
+                <!-- Step 1 -->
+                <div class="bg-brand-slate p-5 rounded-2xl border border-slate-800 text-center relative">
+                    <div class="w-10 h-10 bg-brand-orange text-white rounded-full font-black flex items-center justify-center mx-auto mb-3 shadow-lg shadow-brand-orange/30">1</div>
+                    <h4 class="text-sm font-bold text-white mb-1">Заявка</h4>
+                    <p class="text-slate-400 text-xs">Залишаєте заявку на сайті або телефонуєте нам</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-brand-slate p-5 rounded-2xl border border-slate-800 text-center relative">
+                    <div class="w-10 h-10 bg-brand-orange text-white rounded-full font-black flex items-center justify-center mx-auto mb-3 shadow-lg shadow-brand-orange/30">2</div>
+                    <h4 class="text-sm font-bold text-white mb-1">Замір та кошторис</h4>
+                    <p class="text-slate-400 text-xs">Безкоштовний виїзд замірника та прорахунок</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-brand-slate p-5 rounded-2xl border border-slate-800 text-center relative">
+                    <div class="w-10 h-10 bg-brand-orange text-white rounded-full font-black flex items-center justify-center mx-auto mb-3 shadow-lg shadow-brand-orange/30">3</div>
+                    <h4 class="text-sm font-bold text-white mb-1">Договір</h4>
+                    <p class="text-slate-400 text-xs">Узгодження деталей та підписання договору</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-brand-slate p-5 rounded-2xl border border-slate-800 text-center relative">
+                    <div class="w-10 h-10 bg-brand-orange text-white rounded-full font-black flex items-center justify-center mx-auto mb-3 shadow-lg shadow-brand-orange/30">4</div>
+                    <h4 class="text-sm font-bold text-white mb-1">Ремонт</h4>
+                    <p class="text-slate-400 text-xs">Якісне виконання робіт під контролем майстра</p>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="bg-brand-slate p-5 rounded-2xl border border-slate-800 text-center relative">
+                    <div class="w-10 h-10 bg-emerald-500 text-white rounded-full font-black flex items-center justify-center mx-auto mb-3 shadow-lg shadow-emerald-500/30">5</div>
+                    <h4 class="text-sm font-bold text-white mb-1">Здача об'єкта</h4>
+                    <p class="text-slate-400 text-xs">Перевірка якості, підписання акту та гарантія</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacts & CTA Form Section -->
+    <section id="contacts" class="py-20 bg-slate-900 border-t border-slate-800 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Info -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange mb-3">Зв'яжіться з нами</h2>
+                        <h3 class="text-3xl font-extrabold text-white font-heading">Готові розпочати ремонт?</h3>
+                        <p class="text-slate-400 mt-3 text-sm">Зв'яжіться з нами для консультації або виклику майстра на об'єкт.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 uppercase font-semibold block">Телефон для зв'язку</span>
+                                <a href="tel:+380970000000" class="text-lg font-bold text-white hover:text-brand-orange transition-colors">+38 (097) 000-00-00</a>
+                                <p class="text-xs text-slate-500 mt-0.5">Щодня з 08:00 до 20:00</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 uppercase font-semibold block">Регіон робіт</span>
+                                <span class="text-base font-semibold text-white">м. Вінниця та Вінницька область</span>
+                                <p class="text-xs text-slate-500 mt-0.5">Виїзд замірника в межах області</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 uppercase font-semibold block">Месенджери</span>
+                                <div class="flex items-center space-x-3 mt-1">
+                                    <a href="https://viber.click" target="_blank" class="px-3 py-1.5 bg-purple-600/20 text-purple-400 border border-purple-500/30 rounded-lg text-xs font-semibold hover:bg-purple-600 hover:text-white transition-colors">
+                                        <i class="fa-fab fa-viber mr-1"></i> Viber
+                                    </a>
+                                    <a href="https://t.me" target="_blank" class="px-3 py-1.5 bg-sky-500/20 text-sky-400 border border-sky-500/30 rounded-lg text-xs font-semibold hover:bg-sky-500 hover:text-white transition-colors">
+                                        <i class="fa-fab fa-telegram mr-1"></i> Telegram
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- OLX Direct Link Card -->
+                        <div class="p-4 bg-brand-slate border border-slate-700 rounded-2xl flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-[#002f34] text-cyan-400 font-black text-lg flex items-center justify-center">O</div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-white">Оголошення на OLX</h4>
+                                    <p class="text-xs text-slate-400">Відгуки та приклади робіт</p>
+                                </div>
+                            </div>
+                            <a href="https://www.olx.ua" target="_blank" rel="noopener noreferrer" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3 py-2 rounded-lg font-semibold transition-colors">
+                                Перейти <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action Form -->
+                <div class="lg:col-span-7">
+                    <div class="bg-brand-slate border border-slate-700 p-8 sm:p-10 rounded-3xl shadow-2xl">
+                        <h3 class="text-2xl font-bold text-white font-heading mb-2">Безкоштовний виклик замірника</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-6">Заповніть форму і наш інженер зателефонує вам протягом 15 хвилин для узгодження часу виїзду.</p>
+
+                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">Ваше ім'я *</label>
+                                    <input type="text" required placeholder="Олександр" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-orange transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">Номер телефону *</label>
+                                    <input type="tel" required placeholder="+380 (__) ___-__-__" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-orange transition-colors">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Тип об'єкта</label>
+                                <select class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-orange transition-colors">
+                                    <option value="flat">Квартира у новобудові</option>
+                                    <option value="flat-old">Квартира (вторинний фонд)</option>
+                                    <option value="house">Приватний будинок / Таунхаус</option>
+                                    <option value="office">Офіс / Комерційне приміщення</option>
+                                    <option value="other">Окремі види робіт</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Повідомлення чи побажання</label>
+                                <textarea rows="3" placeholder="Опишіть ваш об'єкт (площа, необхідні роботи...)" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-orange transition-colors"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brand-orange hover:bg-brand-hover text-white py-4 rounded-xl font-bold text-base transition-all shadow-lg shadow-brand-orange/20">
+                                Замовити безкоштовний замір
+                            </button>
+                            
+                            <div id="form-success" class="hidden p-4 bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 rounded-xl text-center text-xs font-semibold">
+                                Дякуємо! Ваша заявка прийнята. Ми зателефонуємо вам найближчим часом.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark border-t border-slate-800 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-brand-orange text-white flex items-center justify-center rounded-lg text-sm font-bold">
+                        <i class="fa-solid fa-helmet-safety"></i>
+                    </div>
+                    <span class="text-lg font-black text-white font-heading tracking-tight">Він<span class="text-brand-orange">Укр</span>Буд</span>
+                </div>
+
+                <div class="text-xs text-slate-500 text-center sm:text-right">
+                    © 2026 "ВінУкрБуд". Всі права захищені. Ремонт приміщень у Вінниці та області.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Call Modal -->
+    <div id="call-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-brand-slate border border-slate-700 rounded-3xl p-6 sm:p-8 max-w-md w-full relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-xl font-bold text-white mb-1" id="modal-title">Замовити дзвінок</h3>
+            <p class="text-slate-400 text-xs mb-6">Залиште свій номер і ми передзвонимо вам за 5 хвилин.</p>
+
+            <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Ім'я</label>
+                    <input type="text" required placeholder="Ваше ім'я" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-orange">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Телефон</label>
+                    <input type="tel" required placeholder="+380 (__) ___-__-__" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-orange">
+                </div>
+                <button type="submit" class="w-full bg-brand-orange hover:bg-brand-hover text-white py-3.5 rounded-xl font-bold text-sm transition-all shadow-lg shadow-brand-orange/20">
+                    Передзвоніть мені
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = 'fa-solid fa-bars';
+            } else {
+                menuIcon.className = 'fa-solid fa-xmark';
+            }
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars';
+            });
+        });
+
+        // Interactive Cost Calculator
+        let selectedPropMultiplier = 1;
+        let selectedRate = 4500;
+        const areaRange = document.getElementById('area-range');
+        const areaVal = document.getElementById('area-val');
+        const totalPriceEl = document.getElementById('total-price');
+
+        // Property type buttons
+        document.querySelectorAll('#property-type button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('#property-type button').forEach(b => {
+                    b.classList.remove('active', 'border-brand-orange', 'bg-brand-orange/20', 'text-white');
+                    b.classList.add('border-slate-700', 'bg-slate-800', 'text-slate-300');
+                });
+                const target = e.currentTarget;
+                target.classList.add('active', 'border-brand-orange', 'bg-brand-orange/20', 'text-white');
+                target.classList.remove('border-slate-700', 'bg-slate-800', 'text-slate-300');
+                selectedPropMultiplier = parseFloat(target.dataset.value);
+                calculateTotal();
+            });
+        });
+
+        // Repair type buttons
+        document.querySelectorAll('#repair-type button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('#repair-type button').forEach(b => {
+                    b.classList.remove('active', 'border-brand-orange', 'bg-brand-orange/20', 'text-white');
+                    b.classList.add('border-slate-700', 'bg-slate-800', 'text-slate-300');
+                });
+                const target = e.currentTarget;
+                target.classList.add('active', 'border-brand-orange', 'bg-brand-orange/20', 'text-white');
+                target.classList.remove('border-slate-700', 'bg-slate-800', 'text-slate-300');
+                selectedRate = parseFloat(target.dataset.rate);
+                calculateTotal();
+            });
+        });
+
+        // Slider update
+        areaRange.addEventListener('input', (e) => {
+            areaVal.innerText = e.target.value + ' м²';
+            calculateTotal();
+        });
+
+        function calculateTotal() {
+            const area = parseInt(areaRange.value);
+            const total = Math.round(area * selectedRate * selectedPropMultiplier);
+            totalPriceEl.innerText = total.toLocaleString('uk-UA');
+        }
+
+        function submitCalcEstimate() {
+            openModal('Зафіксувати ціну: ' + totalPriceEl.innerText + ' грн');
+        }
+
+        // Modal triggers
+        function openModal(title) {
+            if(title) {
+                document.getElementById('modal-title').innerText = title;
+            }
+            document.getElementById('call-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('call-modal').classList.add('hidden');
+        }
+
+        // Form handlers
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('form-success').classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                document.getElementById('form-success').classList.add('hidden');
+            }, 5000);
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            alert('Дякуємо! Ваша заявка прийнята. Ми зателефонуємо вам найближчим часом.');
+            closeModal();
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
